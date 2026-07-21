@@ -158,9 +158,6 @@
 
       seen.add(normalized);
       uniqueCandidates.push(classifyCandidate(normalized));
-      // #region debug-point C:classified-candidate
-      fetch("http://127.0.0.1:7777/event",{method:"POST",body:JSON.stringify({sessionId:"webrtc-exposure-check",runId:"pre",hypothesisId:"C",location:"assets/js/webrtc-detection.js:144",msg:"[DEBUG] WebRTC candidate classified",data:uniqueCandidates[uniqueCandidates.length-1],ts:Date.now()})}).catch(()=>{});
-      // #endregion
     });
 
     return uniqueCandidates;
@@ -413,9 +410,6 @@
       peerConnection.onicecandidate = (event) => {
         if (event && event.candidate && event.candidate.candidate) {
           candidateLines.push(event.candidate.candidate);
-          // #region debug-point A:onicecandidate-raw
-          fetch("http://127.0.0.1:7777/event",{method:"POST",body:JSON.stringify({sessionId:"webrtc-exposure-check",runId:"pre",hypothesisId:"A",location:"assets/js/webrtc-detection.js:277",msg:"[DEBUG] WebRTC raw ICE candidate from onicecandidate",data:{candidate:event.candidate.candidate,candidateType:event.candidate.type||"unknown",protocol:event.candidate.protocol||"unknown",address:event.candidate.address||""},ts:Date.now()})}).catch(()=>{});
-          // #endregion
           return;
         }
 
@@ -440,9 +434,6 @@
             localDescription.sdp.split(/\r?\n/).forEach((line) => {
               if (line.startsWith("a=candidate:")) {
                 candidateLines.push(line.slice(2));
-                // #region debug-point B:sdp-raw
-                fetch("http://127.0.0.1:7777/event",{method:"POST",body:JSON.stringify({sessionId:"webrtc-exposure-check",runId:"pre",hypothesisId:"B",location:"assets/js/webrtc-detection.js:301",msg:"[DEBUG] WebRTC raw ICE candidate from local SDP",data:{candidate:line.slice(2)},ts:Date.now()})}).catch(()=>{});
-                // #endregion
               }
             });
           }
@@ -458,28 +449,43 @@
       globalObject.webkitRTCPeerConnection ||
       globalObject.mozRTCPeerConnection;
 
+    const disabledResult = Object.assign({}, fallback, {
+      state: "WebRTC disattivato",
+      stateKey: "protected",
+      functionalState: "WebRTC disattivato",
+      functionalStateKey: "protected",
+      riskLevel: "Basso",
+      priority: "Bassa",
+      reliability: "Alta",
+      confidence: 0.9,
+      simpleExplanation: "WebRTC risulta disattivato nel browser: nessun indirizzo puo essere esposto tramite questa tecnologia.",
+      privacyImpact: "Con WebRTC disattivato l'esposizione dell'IP tramite WebRTC e nulla. Ricorda che cosi restano bloccate anche le chiamate e videochiamate dentro il browser.",
+      suggestedAction: "Nessuna azione necessaria. Se ti servono le chiamate nel browser, potrai riattivare WebRTC dalle impostazioni.",
+      candidateSummary: "WebRTC disattivato",
+      sources: {
+        webrtcApi: false,
+        candidateGathering: false
+      }
+    });
+
     if (!RTCPeerConnectionConstructor) {
-      return Object.assign({}, fallback, {
-        state: "Configurazione da verificare",
-        stateKey: "verify_configuration",
-        functionalState: "Configurazione da verificare",
-        functionalStateKey: "verify_configuration",
-        riskLevel: "Medio",
-        priority: "Media",
-        simpleExplanation: "Il browser non espone l'API WebRTC necessaria a questa analisi oppure la funzione risulta disattivata.",
-        privacyImpact: "L'assenza dell'API riduce l'esposizione immediata, ma non permette una verifica completa del comportamento futuro in presenza di VPN o DNS leak.",
-        suggestedAction: "Verifica se WebRTC e disattivato intenzionalmente oppure se il browser sta limitando questa analisi in modo compatibile con la tua configurazione.",
-        candidateSummary: "API WebRTC non disponibile",
-        confidence: 0.58
-      });
+      return disabledResult;
+    }
+
+    // Con media.peerconnection.enabled=false (Firefox) il costruttore esiste ma
+    // lancia un'eccezione alla costruzione: va letto come "disattivato", non come errore.
+    try {
+      const probeConnection = new RTCPeerConnectionConstructor();
+      if (probeConnection && typeof probeConnection.close === "function") {
+        probeConnection.close();
+      }
+    } catch (constructionError) {
+      return disabledResult;
     }
 
     try {
       const candidates = await collectIceCandidates(RTCPeerConnectionConstructor);
       const evaluated = evaluateCandidates(candidates);
-      // #region debug-point D:evaluation-summary
-      fetch("http://127.0.0.1:7777/event",{method:"POST",body:JSON.stringify({sessionId:"webrtc-exposure-check",runId:"pre",hypothesisId:"D",location:"assets/js/webrtc-detection.js:331",msg:"[DEBUG] WebRTC evaluation summary",data:{candidateCount:candidates.length,candidates,exposure:evaluated.exposure,state:evaluated.state,riskLevel:evaluated.riskLevel,candidateSummary:evaluated.candidateSummary},ts:Date.now()})}).catch(()=>{});
-      // #endregion
       return Object.assign({}, evaluated, {
         sources: {
           webrtcApi: true,
@@ -488,9 +494,6 @@
         candidates
       });
     } catch (error) {
-      // #region debug-point E:evaluation-error
-      fetch("http://127.0.0.1:7777/event",{method:"POST",body:JSON.stringify({sessionId:"webrtc-exposure-check",runId:"pre",hypothesisId:"E",location:"assets/js/webrtc-detection.js:344",msg:"[DEBUG] WebRTC evaluation error",data:{message:error&&error.message?error.message:"unknown error"},ts:Date.now()})}).catch(()=>{});
-      // #endregion
       return Object.assign({}, fallback, {
         state: "Configurazione da verificare",
         stateKey: "verify_configuration",
