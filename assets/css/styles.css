@@ -1,0 +1,1166 @@
+:root {
+  --app-bg: #f4f7fb;
+  --app-surface: rgba(255, 255, 255, 0.82);
+  --app-surface-solid: #ffffff;
+  --app-border: rgba(15, 23, 42, 0.08);
+  --app-text: #142033;
+  --app-muted: #5f6f86;
+  --app-primary: #3056d3;
+  --app-primary-soft: rgba(48, 86, 211, 0.12);
+  --app-success: #1f9d68;
+  --app-warning: #c98917;
+  --app-danger: #cf4b59;
+  --app-info: #267db8;
+  --app-shadow: 0 18px 45px rgba(15, 23, 42, 0.09);
+}
+
+[data-bs-theme="dark"] {
+  --app-bg: #0b1220;
+  --app-surface: rgba(16, 24, 40, 0.88);
+  --app-surface-solid: #111b2f;
+  --app-border: rgba(148, 163, 184, 0.14);
+  --app-text: #ecf2ff;
+  --app-muted: #9fb0c7;
+  --app-primary: #77a0ff;
+  --app-primary-soft: rgba(119, 160, 255, 0.16);
+  --app-success: #3bc886;
+  --app-warning: #f0b54c;
+  --app-danger: #ff7a88;
+  --app-info: #6abfff;
+  --app-shadow: 0 20px 50px rgba(2, 8, 23, 0.42);
+}
+
+body.app-body {
+  background:
+    radial-gradient(circle at top left, rgba(48, 86, 211, 0.12), transparent 28%),
+    radial-gradient(circle at top right, rgba(38, 125, 184, 0.08), transparent 22%),
+    var(--app-bg);
+  color: var(--app-text);
+  min-height: 100vh;
+}
+
+a {
+  color: inherit;
+}
+
+.app-navbar {
+  backdrop-filter: blur(18px);
+  background-color: rgba(244, 247, 251, 0.78);
+  border-bottom: 1px solid var(--app-border);
+}
+
+[data-bs-theme="dark"] .app-navbar {
+  background-color: rgba(11, 18, 32, 0.82);
+}
+
+.navbar-brand,
+.nav-link,
+.app-footer strong,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--app-text);
+}
+
+.nav-link {
+  color: var(--app-muted);
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--app-primary);
+}
+
+.theme-toggle {
+  min-width: 118px;
+}
+
+.hero-section {
+  padding: 5rem 0 3.5rem;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: var(--app-primary-soft);
+  color: var(--app-primary);
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.glass-card,
+.feature-card,
+.content-panel,
+.metric-card,
+.soft-box,
+.cta-panel {
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: 1.25rem;
+  box-shadow: var(--app-shadow);
+}
+
+.glass-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.glass-card::after {
+  content: "";
+  position: absolute;
+  inset: auto -60px -60px auto;
+  width: 180px;
+  height: 180px;
+  background: radial-gradient(circle, rgba(48, 86, 211, 0.2), transparent 72%);
+}
+
+.feature-card,
+.content-panel {
+  padding: 1.5rem;
+  height: 100%;
+}
+
+.metric-card {
+  padding: 1rem;
+  background: var(--app-surface-solid);
+}
+
+.metric-label {
+  display: block;
+  margin-bottom: 0.35rem;
+  color: var(--app-muted);
+  font-size: 0.9rem;
+}
+
+.metric-value {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+.hero-note {
+  color: var(--app-muted);
+  font-size: 0.95rem;
+}
+
+.section-heading {
+  max-width: 760px;
+  margin-bottom: 2rem;
+}
+
+.section-surface {
+  background: linear-gradient(180deg, transparent 0%, rgba(48, 86, 211, 0.04) 100%);
+}
+
+.check-item {
+  padding: 1rem 1.1rem;
+  border-radius: 1rem;
+  background: var(--app-surface-solid);
+  border: 1px solid var(--app-border);
+  color: var(--app-text);
+  font-weight: 500;
+}
+
+.muted-list li + li {
+  margin-top: 0.85rem;
+}
+
+.muted-list li {
+  color: var(--app-muted);
+}
+
+.cta-panel {
+  padding: 1.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.page-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.status-info {
+  color: var(--app-info);
+  background: color-mix(in srgb, var(--app-info) 14%, transparent);
+}
+
+.status-success {
+  color: var(--app-success);
+  background: color-mix(in srgb, var(--app-success) 14%, transparent);
+}
+
+.status-warning {
+  color: var(--app-warning);
+  background: color-mix(in srgb, var(--app-warning) 14%, transparent);
+}
+
+.status-danger {
+  color: var(--app-danger);
+  background: color-mix(in srgb, var(--app-danger) 14%, transparent);
+}
+
+.language-switch-item {
+  min-width: 84px;
+}
+
+.language-switch {
+  border-radius: 999px;
+  border-color: var(--app-border);
+  background: var(--app-surface);
+  color: var(--app-text);
+  font-weight: 600;
+}
+
+.summary-card {
+  padding: 1.4rem;
+  background: var(--app-surface);
+  border: 1px solid var(--app-border);
+  border-radius: 1.25rem;
+  box-shadow: var(--app-shadow);
+  height: 100%;
+  position: relative;
+}
+
+.summary-card .summary-label {
+  color: var(--app-muted);
+  font-size: 0.92rem;
+}
+
+.summary-card .summary-value {
+  display: block;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--app-text);
+}
+
+.finding-card {
+  padding: 1.2rem;
+  border: 1px solid var(--app-border);
+  border-radius: 1rem;
+  background: var(--app-surface-solid);
+  height: 100%;
+  position: relative;
+}
+
+.finding-card p {
+  color: var(--app-muted);
+  margin-bottom: 0;
+}
+
+.hub-card {
+  display: flex;
+  flex-direction: column;
+  padding: 1.35rem;
+  border-radius: 1.15rem;
+  border: 1px solid var(--app-border);
+  background: var(--app-surface-solid);
+  box-shadow: var(--app-shadow);
+  position: relative;
+  overflow: hidden;
+}
+
+.hub-card::before {
+  content: "";
+  position: absolute;
+  top: 0.95rem;
+  bottom: 0.95rem;
+  left: 0.65rem;
+  width: 4px;
+  border-radius: 999px;
+  opacity: 0.95;
+  background: var(--app-info);
+}
+
+.hub-card--proceed::before {
+  background: var(--app-primary);
+}
+
+.hub-card--optimize::before {
+  background: var(--app-warning);
+}
+
+.hub-card--understand::before {
+  background: var(--app-success);
+}
+
+.hub-card--deepdive::before {
+  background: var(--app-info);
+}
+
+.hub-card-meta {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.action-panel {
+  border-radius: 1.15rem;
+  border: 1px solid var(--app-border);
+  padding: 1.4rem;
+  box-shadow: var(--app-shadow);
+  background: var(--app-surface-solid);
+  position: relative;
+  overflow: hidden;
+}
+
+.action-panel--primary {
+  background: color-mix(in srgb, var(--app-primary) 8%, var(--app-surface-solid));
+}
+
+.action-panel--primary::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, color-mix(in srgb, var(--app-primary) 22%, transparent) 0%, transparent 55%);
+  pointer-events: none;
+}
+
+.action-panel .soft-box {
+  background: color-mix(in srgb, var(--app-surface-solid) 84%, var(--app-primary) 16%);
+}
+
+.action-panel .status-pill {
+  white-space: nowrap;
+}
+
+.timeline-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.timeline-item {
+  position: relative;
+  padding: 1rem 1rem 1rem 1.2rem;
+  border-left: 3px solid var(--app-primary);
+  background: var(--app-surface-solid);
+  border-radius: 0.85rem;
+}
+
+.report-list {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.report-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  border-radius: 1rem;
+  background: var(--app-surface-solid);
+  border: 1px solid var(--app-border);
+  position: relative;
+}
+
+.report-item p {
+  margin-bottom: 0;
+  color: var(--app-muted);
+}
+
+.result-tone::before {
+  content: "";
+  position: absolute;
+  top: 0.95rem;
+  bottom: 0.95rem;
+  left: 0.55rem;
+  width: 4px;
+  border-radius: 999px;
+  opacity: 0.95;
+}
+
+.result-tone-info::before {
+  background: var(--app-info);
+}
+
+.result-tone-success::before {
+  background: var(--app-success);
+}
+
+.result-tone-warning::before {
+  background: var(--app-warning);
+}
+
+.result-tone-danger::before {
+  background: var(--app-danger);
+}
+
+.summary-card.result-tone,
+.finding-card.result-tone,
+.report-item.result-tone {
+  padding-left: 1.45rem;
+}
+
+.soft-box {
+  padding: 1.1rem;
+  background: var(--app-surface-solid);
+}
+
+.privacy-score-panel {
+  padding: 1.35rem;
+  border-radius: 1rem;
+  background: var(--app-surface-solid);
+  border: 1px solid var(--app-border);
+}
+
+.privacy-score-value {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 2.6rem;
+  line-height: 1;
+  font-weight: 800;
+  color: var(--app-text);
+}
+
+.privacy-score-level {
+  display: block;
+  margin-top: 0.35rem;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--app-primary);
+}
+
+.soft-progress {
+  height: 0.9rem;
+  background: rgba(127, 146, 176, 0.18);
+  border-radius: 999px;
+}
+
+.soft-progress .progress-bar {
+  background: linear-gradient(90deg, var(--app-primary), color-mix(in srgb, var(--app-primary) 65%, white));
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.analysis-spinner-wrap {
+  width: 4rem;
+  height: 4rem;
+  border-radius: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--app-primary-soft);
+  border: 1px solid var(--app-border);
+}
+
+.analysis-phase-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.analysis-phase-card {
+  padding: 1.1rem 1.2rem;
+  border-radius: 1rem;
+  border: 1px solid var(--app-border);
+  background: var(--app-surface-solid);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.analysis-phase-card.is-active {
+  transform: translateY(-1px);
+  border-color: color-mix(in srgb, var(--app-primary) 42%, var(--app-border));
+  box-shadow: 0 12px 28px rgba(48, 86, 211, 0.12);
+}
+
+.recommendation-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.recommendation-card {
+  padding: 1.2rem 1.2rem 1.2rem 1.45rem;
+  border-radius: 1rem;
+  border: 1px solid var(--app-border);
+  background: var(--app-surface-solid);
+  position: relative;
+}
+
+.recommendation-card.is-focus {
+  border-color: color-mix(in srgb, var(--app-primary) 55%, var(--app-border));
+  box-shadow: 0 14px 34px rgba(48, 86, 211, 0.14);
+  transform: translateY(-1px);
+}
+
+.recommendation-card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.recommendation-priority {
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--app-muted);
+}
+
+.recommendation-description {
+  color: var(--app-muted);
+}
+
+.recommendation-card-footer {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.recommendation-audience {
+  font-size: 0.9rem;
+  color: var(--app-text);
+  font-weight: 600;
+}
+
+.recommendation-detail-box {
+  padding: 1rem;
+  border-radius: 0.9rem;
+  background: color-mix(in srgb, var(--app-primary) 6%, var(--app-surface));
+  border: 1px solid var(--app-border);
+}
+
+.recommendation-detail-box p {
+  color: var(--app-muted);
+}
+
+.journey-hero-panel {
+  display: grid;
+  gap: 0.9rem;
+}
+
+.journey-progress-box {
+  padding: 1rem 1.05rem;
+  border-radius: 1rem;
+  border: 1px solid var(--app-border);
+  background: var(--app-surface-solid);
+}
+
+.journey-step-list {
+  display: grid;
+  gap: 1rem;
+}
+
+.journey-step-card {
+  padding: 1.15rem 1.2rem 1.2rem 1.4rem;
+  border-radius: 1rem;
+  border: 1px solid var(--app-border);
+  background: var(--app-surface-solid);
+  position: relative;
+}
+
+.journey-step-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.journey-step-order {
+  color: var(--app-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.journey-step-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 1rem;
+  margin-top: 0.9rem;
+  color: var(--app-muted);
+  font-size: 0.92rem;
+}
+
+.journey-step-meta span {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.journey-empty-box {
+  padding: 1rem 1.05rem;
+}
+
+.analysis-phase-card.is-completed {
+  border-color: color-mix(in srgb, var(--app-success) 30%, var(--app-border));
+}
+
+.analysis-phase-card.is-pending {
+  opacity: 0.92;
+}
+
+.analysis-phase-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.analysis-phase-step {
+  color: var(--app-muted);
+  font-size: 0.88rem;
+  font-weight: 600;
+}
+
+.analysis-phase-status {
+  min-width: 110px;
+  text-align: center;
+}
+
+.analysis-phase-description {
+  color: var(--app-muted);
+  margin: 0.75rem 0 0;
+}
+
+.analysis-phase-progress {
+  margin-top: 0.9rem;
+  height: 0.65rem;
+  background: rgba(127, 146, 176, 0.18);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.analysis-phase-progress-bar {
+  width: 0;
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--app-primary), color-mix(in srgb, var(--app-primary) 65%, white));
+  transition: width 0.35s ease;
+}
+
+.app-accordion .accordion-item {
+  border: 1px solid var(--app-border);
+  background: var(--app-surface-solid);
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.app-accordion .accordion-item + .accordion-item {
+  margin-top: 0.85rem;
+}
+
+.app-accordion .accordion-button,
+.app-accordion .accordion-body {
+  background: var(--app-surface-solid);
+  color: var(--app-text);
+}
+
+.app-accordion .accordion-button {
+  padding: 1rem 1.15rem;
+  font-weight: 700;
+}
+
+.app-accordion .accordion-button > span {
+  display: block;
+  width: calc(100% - 1.25rem);
+}
+
+.app-accordion .accordion-button:not(.collapsed) {
+  box-shadow: none;
+  background: var(--app-primary-soft);
+}
+
+.app-accordion .accordion-body {
+  padding: 1rem 1.15rem 1.15rem;
+}
+
+.app-accordion .accordion-body .content-panel {
+  padding: 0;
+  border: 0;
+  box-shadow: none;
+  background: transparent;
+}
+
+.intelligence-hero-compact {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.intelligence-summary-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.intelligence-summary-pill {
+  padding: 0.95rem 1rem;
+  border-radius: 1rem;
+  background: var(--app-surface-solid);
+  border: 1px solid var(--app-border);
+}
+
+.intelligence-card-compact {
+  display: grid;
+  gap: 0.2rem;
+}
+
+.intelligence-lead-card {
+  padding-top: 0.9rem;
+  padding-bottom: 0.9rem;
+}
+
+.intelligence-meta-grid .soft-box {
+  padding: 0.85rem 0.95rem;
+}
+
+.intelligence-meta-item strong {
+  font-size: 0.98rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.intelligence-reason-note,
+.intelligence-empty-box {
+  padding: 0.95rem 1rem;
+}
+
+.intelligence-strengths-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.intelligence-strength-item {
+  padding: 0.95rem 1rem;
+}
+
+.intelligence-strength-item strong,
+.intelligence-reason-item strong {
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+.intelligence-strength-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  margin-top: 0.45rem;
+  color: var(--app-muted);
+  font-size: 0.9rem;
+}
+
+.intelligence-reason-list {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.intelligence-reason-item {
+  padding: 0.9rem 1rem;
+  border-radius: 0.95rem;
+  border: 1px solid var(--app-border);
+  background: var(--app-surface-solid);
+}
+
+.intelligence-reason-item p {
+  color: var(--app-muted);
+  margin-top: 0.35rem;
+}
+
+.intelligence-reason-warning {
+  border-left: 4px solid var(--app-warning);
+}
+
+.intelligence-reason-success {
+  border-left: 4px solid var(--app-success);
+}
+
+.intelligence-reason-info {
+  border-left: 4px solid var(--app-info);
+}
+
+.app-footer {
+  margin-top: 2rem;
+  padding: 2rem 0 3rem;
+  border-top: 1px solid var(--app-border);
+}
+
+.footer-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-links a {
+  color: var(--app-muted);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  color: var(--app-primary);
+}
+
+.text-secondary {
+  color: var(--app-muted) !important;
+}
+
+@media (max-width: 991.98px) {
+  .hero-section {
+    padding-top: 3.5rem;
+  }
+
+  .cta-panel,
+  .page-intro {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .intelligence-summary-strip {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .hero-section {
+    padding-bottom: 2.5rem;
+  }
+
+  .feature-card,
+  .content-panel,
+  .summary-card,
+  .cta-panel {
+    padding: 1.2rem;
+  }
+
+  .report-item {
+    flex-direction: column;
+  }
+}
+
+/* ============================================================
+   Fase B — Journey Stepper (percorso Capisci/Approfondisci/Agisci)
+   Solo presentazione: nessuna dipendenza dai motori .js
+   ============================================================ */
+.journey-stepper {
+  background-color: var(--app-surface);
+  border-bottom: 1px solid var(--app-border);
+  backdrop-filter: blur(12px);
+}
+
+.journey-stepper-track {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0.6rem 0;
+  counter-reset: journey;
+}
+
+.journey-step {
+  flex: 1 1 0;
+  min-width: 130px;
+}
+
+.journey-step > a {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.85rem;
+  border-radius: 999px;
+  text-decoration: none;
+  color: var(--app-muted);
+  border: 1px solid transparent;
+  transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.journey-step > a:hover {
+  color: var(--app-text);
+  background-color: var(--app-primary-soft);
+}
+
+.journey-step-index {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  font-size: 0.85rem;
+  font-weight: 600;
+  flex-shrink: 0;
+  border: 1px solid var(--app-border);
+  background-color: var(--app-surface-solid);
+  color: var(--app-muted);
+}
+
+.journey-step-label {
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.journey-step.is-active > a {
+  color: var(--app-primary);
+  background-color: var(--app-primary-soft);
+  border-color: var(--app-primary);
+}
+
+.journey-step.is-active .journey-step-index {
+  background-color: var(--app-primary);
+  border-color: var(--app-primary);
+  color: #ffffff;
+}
+
+.journey-step.is-complete .journey-step-index {
+  background-color: var(--app-success);
+  border-color: var(--app-success);
+  color: #ffffff;
+}
+
+.journey-step.is-complete > a {
+  color: var(--app-text);
+}
+
+@media (max-width: 575.98px) {
+  .journey-step-label {
+    font-size: 0.85rem;
+  }
+  .journey-step {
+    min-width: 104px;
+  }
+}
+
+/* ============================================================
+   Fase E — Componente card di verifica: stati uniformi
+   Estende il sistema result-tone esistente con due stati nuovi
+   (neutral = non applicabile, pending = in verifica) e un chip
+   di stato etichettato riusabile da ogni verifica futura.
+   Solo presentazione: nessuna logica dei motori coinvolta.
+   ============================================================ */
+.result-tone-neutral::before {
+  background: var(--app-muted);
+}
+
+.result-tone-pending::before {
+  background: var(--app-info);
+  opacity: 0.5;
+}
+
+.check-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.22rem 0.62rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1;
+  white-space: nowrap;
+  border: 1px solid var(--app-border);
+  background: var(--app-surface-solid);
+  color: var(--app-muted);
+}
+
+.check-status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+
+.check-status-success {
+  color: var(--app-success);
+  border-color: color-mix(in srgb, var(--app-success) 40%, transparent);
+}
+
+.check-status-warning {
+  color: var(--app-warning);
+  border-color: color-mix(in srgb, var(--app-warning) 40%, transparent);
+}
+
+.check-status-danger {
+  color: var(--app-danger);
+  border-color: color-mix(in srgb, var(--app-danger) 40%, transparent);
+}
+
+.check-status-info {
+  color: var(--app-info);
+  border-color: color-mix(in srgb, var(--app-info) 40%, transparent);
+}
+
+.check-status-neutral {
+  color: var(--app-muted);
+}
+
+.check-status-pending {
+  color: var(--app-info);
+}
+
+/* Istruzioni passo-passo delle raccomandazioni (elenco numerato) */
+.recommendation-steps {
+  padding-left: 1.25rem;
+  margin-top: 0.5rem;
+}
+
+.recommendation-steps li {
+  margin-bottom: 0.45rem;
+  line-height: 1.55;
+}
+
+.recommendation-steps li:last-child {
+  margin-bottom: 0;
+}
+
+/* Footer standard con branding TivuStream */
+.footer-about {
+  max-width: 34rem;
+}
+
+.footer-brand {
+  color: var(--app-muted);
+  font-size: 0.92rem;
+}
+
+.footer-brand strong {
+  color: var(--app-primary);
+  font-weight: 600;
+}
+
+.footer-bottom {
+  margin-top: 1.3rem;
+  padding-top: 0.9rem;
+  border-top: 1px solid var(--app-border);
+  font-size: 0.82rem;
+}
+
+/* Marchio (logo a scudo) nella navbar, adattivo al tema */
+.brand-logo {
+  color: var(--app-primary);
+  display: inline-flex;
+  align-items: center;
+}
+
+.brand-logo svg {
+  width: 26px;
+  height: 26px;
+}
+
+.footer-brand a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.footer-brand a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================================
+   Fase C — Indice di pagina (jump nav) per le pagine dense
+   Ancoraggi interni senza JS; scroll-margin evita che le
+   sezioni finiscano sotto la navbar sticky.
+   ============================================================ */
+.page-jump-nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 0;
+  margin-bottom: 1rem;
+  border-top: 1px solid var(--app-border);
+  border-bottom: 1px solid var(--app-border);
+}
+
+.page-jump-nav .page-jump-label {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: var(--app-muted);
+  margin-right: 0.25rem;
+}
+
+.page-jump-nav a {
+  font-size: 0.88rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 999px;
+  border: 1px solid var(--app-border);
+  color: var(--app-muted);
+  text-decoration: none;
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.page-jump-nav a:hover,
+.page-jump-nav a:focus {
+  color: var(--app-primary);
+  background-color: var(--app-primary-soft);
+  border-color: var(--app-primary);
+}
+
+.jump-target {
+  scroll-margin-top: 84px;
+}
+
+/* ============================================================
+   Fase D — Progressive disclosure (dettaglio tecnico)
+   Usa l'elemento nativo <details>: nessun JS, si apre/chiude
+   da solo. Riusabile da ogni verifica che voglia nascondere
+   l'evidenza tecnica dietro "Mostra dettaglio".
+   ============================================================ */
+.pca-details {
+  border: 1px solid var(--app-border);
+  border-radius: 0.9rem;
+  background: var(--app-surface-solid);
+  overflow: hidden;
+}
+
+.pca-details > summary {
+  cursor: pointer;
+  padding: 0.85rem 1.1rem;
+  font-weight: 600;
+  color: var(--app-text);
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.pca-details > summary::-webkit-details-marker {
+  display: none;
+}
+
+.pca-details > summary::after {
+  content: "+";
+  font-size: 1.2rem;
+  line-height: 1;
+  color: var(--app-muted);
+}
+
+.pca-details[open] > summary::after {
+  content: "\2013";
+}
+
+.pca-details > summary:hover {
+  color: var(--app-primary);
+}
+
+.pca-details-body {
+  padding: 0 1.1rem 1.1rem;
+}

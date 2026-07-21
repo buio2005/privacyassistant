@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="it" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Configuration Assistant</title>
+  <meta name="description" content="Homepage del Privacy Configuration Assistant con Browser Detection Engine reale, navigazione e accesso alla dashboard live.">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="app-body">
+  <nav class="navbar navbar-expand-lg sticky-top app-navbar">
+    <div class="container">
+      <a class="navbar-brand fw-semibold d-inline-flex align-items-center gap-2" href="index.html" aria-label="Privacy Configuration Assistant, parte di TivuStream Privacy First">
+        <span class="brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2 4 5v6c0 4.5 3.2 7.7 8 9 4.8-1.3 8-4.5 8-9V5l-8-3z" fill="currentColor" opacity="0.16"/>
+            <path d="M12 2 4 5v6c0 4.5 3.2 7.7 8 9 4.8-1.3 8-4.5 8-9V5l-8-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="m8.5 11.9 2.3 2.4 4.7-5.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span>Privacy Configuration Assistant</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Apri navigazione">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item">
+            <a class="nav-link" data-nav-link href="index.html">Homepage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-nav-link href="dashboard.html">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-nav-link href="analysis.html">Analisi</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-nav-link href="optimization.html">Ottimizza</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-nav-link href="guide.html">Guida</a>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <button class="btn btn-outline-primary btn-sm theme-toggle" type="button" data-theme-toggle aria-label="Cambia tema">
+              <span data-theme-label>Dark mode</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero-section">
+      <div class="container">
+        <div class="row align-items-center g-4">
+          <div class="col-lg-6">
+            <span class="eyebrow">Versione 0.9</span>
+            <h1 class="display-5 fw-bold mt-3">Comprendi la tua configurazione privacy con un'interfaccia semplice e guidata.</h1>
+            <p class="lead text-secondary mt-3">
+              Non ti mostra solo dei numeri: ti spiega com'e la tua privacy e ti guida, passo dopo passo,
+              a migliorarla, con istruzioni precise per il tuo browser.
+            </p>
+            <div class="d-flex flex-wrap gap-3 mt-4">
+              <button class="btn btn-primary btn-lg" type="button" id="homeHeroStartAction" data-home-start-analysis>Avvia Analisi Privacy</button>
+              <a class="btn btn-outline-secondary btn-lg" href="guide.html" id="homeHeroGuideAction">Leggi la guida</a>
+            </div>
+            <p class="hero-note mt-3 mb-0" id="homeHeroFlowNote">
+              Flusso consigliato: avvia analisi, capisci in dashboard, approfondisci in analysis, procedi in optimization.
+            </p>
+            <div class="hero-note mt-4" data-home-note>Detection browser, rete, DNS e WebRTC sono attivi, con Privacy Score e percorso guidato. Le prossime verifiche in arrivo: DNS Leak, DNSSEC e VPN.</div>
+          </div>
+          <div class="col-lg-6">
+            <div class="glass-card p-4 p-md-5">
+              <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                  <p class="text-uppercase small mb-1 text-secondary">Preview report</p>
+                  <h2 class="h4 mb-0">Panoramica privacy</h2>
+                </div>
+                <span class="status-pill status-info" data-home-badge>Live</span>
+              </div>
+              <div class="row g-3">
+                <div class="col-6">
+                  <div class="metric-card">
+                    <span class="metric-label">Browser</span>
+                    <strong class="metric-value" data-home-browser>In rilevamento...</strong>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="metric-card">
+                    <span class="metric-label">Versione</span>
+                    <strong class="metric-value" data-home-version>In rilevamento...</strong>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="metric-card">
+                    <span class="metric-label">Sistema operativo</span>
+                    <strong class="metric-value" data-home-os>In rilevamento...</strong>
+                  </div>
+                </div>
+                <div class="col-6">
+                  <div class="metric-card">
+                    <span class="metric-label">Privacy Level</span>
+                    <strong class="metric-value" data-home-level>In rilevamento...</strong>
+                  </div>
+                </div>
+              </div>
+                <div class="progress soft-progress mt-4" role="progressbar" aria-label="Livello di avanzamento del prodotto" aria-valuenow="72" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" style="width: 72%">72%</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5">
+      <div class="container">
+        <div class="section-heading">
+          <span class="eyebrow" id="homeFlowEyebrow">Per utenti non tecnici</span>
+          <h2 class="mt-2" id="homeFlowTitle">Un percorso chiaro in quattro passaggi</h2>
+          <p class="text-secondary mb-0" id="homeFlowDescription">
+            L'esperienza ora distingue meglio il ruolo di ogni pagina: prima avvii il rilevamento, poi leggi la sintesi, approfondisci il perche e infine segui il percorso consigliato.
+          </p>
+        </div>
+        <div class="row g-4 mt-1">
+          <div class="col-md-6 col-xl-3">
+            <div class="feature-card h-100">
+              <h3 class="h5" id="homeFlowStep1Title">1. Avvia analisi</h3>
+              <p class="mb-0 text-secondary" id="homeFlowStep1Description">Il popup iniziale rende visibili le fasi dell'analisi e apre automaticamente la dashboard quando il rilevamento di base e pronto.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="feature-card h-100">
+              <h3 class="h5" id="homeFlowStep2Title">2. Capisci in dashboard</h3>
+              <p class="mb-0 text-secondary" id="homeFlowStep2Description">La dashboard a schede ti mostra la sintesi del quadro, il problema dominante e le porte d'ingresso verso le aree dedicate.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="feature-card h-100">
+              <h3 class="h5" id="homeFlowStep3Title">3. Approfondisci in analysis</h3>
+              <p class="mb-0 text-secondary" id="homeFlowStep3Description">La pagina analysis spiega meglio il quadro Root Cause Driven, le motivazioni del motore e le cause funzionali aggregate.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-xl-3">
+            <div class="feature-card h-100">
+              <h3 class="h5" id="homeFlowStep4Title">4. Procedi in optimization</h3>
+              <p class="mb-0 text-secondary" id="homeFlowStep4Description">La pagina optimization raccoglie Journey, step consigliati e suggerimenti prioritari per passare dalla lettura all'azione.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5 section-surface">
+      <div class="container">
+        <div class="row g-4 align-items-stretch">
+          <div class="col-lg-7">
+            <div class="content-panel h-100">
+              <span class="eyebrow">Cosa fa lo strumento</span>
+              <h2 class="mt-2">Cosa include questa release</h2>
+              <div class="row g-3 mt-1">
+                <div class="col-sm-6">
+                  <div class="check-item">Browser, rete, DNS e WebRTC detection</div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="check-item">Privacy Score e Root Cause Engine</div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="check-item">Percorso guidato Journey</div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="check-item">Navbar, stepper e footer condivisi</div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="check-item">Pagina guida per utenti non tecnici</div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="check-item">Supporto dark/light mode</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-5">
+            <div class="content-panel h-100">
+              <span class="eyebrow">Prossimi passi</span>
+              <h2 class="mt-2">Prossime aggiunte</h2>
+              <ul class="list-unstyled muted-list mb-0">
+                <li>Ri-verifica automatica dopo la correzione</li>
+                <li>Supporto per il browser Safari</li>
+                <li>Report finale da salvare o condividere</li>
+                <li>Rilevamento DoH completo</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-5">
+      <div class="container">
+        <div class="cta-panel">
+          <div>
+            <span class="eyebrow">Prossimo passo</span>
+            <h2 class="mt-2 mb-2" id="homeCtaTitle">Avvia l'analisi privacy e poi consulta la guida utente.</h2>
+            <p class="text-secondary mb-0" id="homeCtaDescription">La navigazione e pronta sia per desktop sia per mobile, con uno stile coerente in ogni pagina.</p>
+          </div>
+          <div class="d-flex flex-wrap gap-3">
+            <button class="btn btn-primary" type="button" id="homeCtaStartAction" data-home-start-analysis>Avvia Analisi Privacy</button>
+            <a class="btn btn-outline-secondary" href="guide.html" id="homeCtaGuideAction">Apri la guida</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="modal fade" id="homeAnalysisModal" tabindex="-1" aria-labelledby="homeAnalysisModalTitle" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header border-0 pb-0">
+          <div>
+            <span class="eyebrow" id="homeAnalysisModalEyebrow">Avvio analisi</span>
+            <h2 class="modal-title h4 mt-2 mb-1" id="homeAnalysisModalTitle">Sto preparando la dashboard con i controlli disponibili</h2>
+            <p class="text-secondary mb-0" id="homeAnalysisModalDescription">
+              L'analisi iniziale ti accompagna attraverso poche fasi visibili e poi apre automaticamente la dashboard a schede.
+            </p>
+          </div>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Chiudi"></button>
+        </div>
+        <div class="modal-body pt-4">
+          <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap mb-4">
+            <div>
+              <span class="eyebrow" id="homeAnalysisStatusEyebrow">Stato analisi</span>
+              <h3 class="h5 mt-2 mb-1" data-home-analysis-current-title>Preparazione delle fasi...</h3>
+              <p class="text-secondary mb-0" data-home-analysis-current-description>Tra pochi istanti iniziera il controllo guidato.</p>
+            </div>
+            <span class="status-pill status-info" data-home-analysis-badge>In corso</span>
+          </div>
+
+          <div class="soft-box">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <span id="homeAnalysisProgressLabel">Avanzamento complessivo</span>
+              <strong data-home-analysis-percent>0%</strong>
+            </div>
+            <div class="progress soft-progress" role="progressbar" aria-label="Avanzamento analisi privacy" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+              <div class="progress-bar" data-home-analysis-progress-bar style="width: 0%">0%</div>
+            </div>
+          </div>
+
+          <div class="row g-4 mt-1">
+            <div class="col-lg-7">
+              <div class="analysis-phase-list" id="homeAnalysisPhaseList"></div>
+            </div>
+            <div class="col-lg-5">
+              <div class="content-panel h-100">
+                <span class="eyebrow" id="homeAnalysisPreviewEyebrow">Anteprima live</span>
+                <h3 class="h5 mt-2 mb-3" id="homeAnalysisPreviewTitle">Primi dati disponibili</h3>
+                <div class="soft-box">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span id="homeAnalysisBrowserLabel">Browser rilevato</span>
+                    <strong data-home-analysis-browser>In attesa...</strong>
+                  </div>
+                </div>
+                <div class="soft-box mt-3">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span id="homeAnalysisOsLabel">Sistema operativo</span>
+                    <strong data-home-analysis-os>In attesa...</strong>
+                  </div>
+                </div>
+                <div class="soft-box mt-3">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span id="homeAnalysisFamilyLabel">Famiglia browser</span>
+                    <strong data-home-analysis-family>In attesa...</strong>
+                  </div>
+                </div>
+                <div class="soft-box mt-3">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <span id="homeAnalysisLevelLabel">Privacy Level</span>
+                    <strong data-home-analysis-level>In attesa...</strong>
+                  </div>
+                </div>
+                <div class="soft-box mt-3">
+                  <p class="text-secondary small mb-0" id="homeAnalysisPreviewDescription">
+                    In questa fase iniziale rendo visibili i passaggi principali del rilevamento e poi apro la dashboard completa.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="app-footer">
+    <div class="container">
+      <div class="footer-top d-flex flex-column flex-md-row justify-content-between align-items-start gap-3">
+        <div class="footer-about">
+          <strong>Privacy Configuration Assistant</strong>
+          <p class="mb-2 text-secondary">Analizza la tua privacy e ti guida, passo passo, a migliorarla &mdash; anche se non sei tecnico.</p>
+          <p class="footer-brand mb-0">Parte del progetto <a href="https://tivustream.com" target="_blank" rel="noopener"><strong>TivuStream &middot; Privacy First</strong></a></p>
+        </div>
+        <nav class="footer-links" aria-label="Link del footer">
+          <a href="index.html">Homepage</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="analysis.html">Analisi</a>
+          <a href="optimization.html">Ottimizza</a>
+          <a href="guide.html">Guida</a>
+        </nav>
+      </div>
+      <div class="footer-bottom text-secondary">Versione 0.9 &middot; TivuStream Privacy First</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/browser-detection.js"></script>
+  <script src="assets/js/privacy-intelligence-engine.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>

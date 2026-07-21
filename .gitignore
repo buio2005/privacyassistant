@@ -1,0 +1,19 @@
+# Archivio e backup locali
+_archive/
+*.zip
+
+# Documenti di progetto interni: solo consultazione locale, NON online
+docs/
+
+# Log e file di debug
+.dbg/
+*.ndjson
+*.log
+debug-*.md
+
+# File di sistema
+.DS_Store
+Thumbs.db
+
+# Dipendenze (se in futuro aggiungi build tool)
+node_modules/

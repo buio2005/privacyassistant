@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="it" data-bs-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Privacy Configuration Assistant</title>
+  <meta name="description" content="Dashboard del Privacy Configuration Assistant con Browser Detection, Network Detection, DNS Provider Detection, WebRTC Analysis, Privacy Score e Recommendation Engine.">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
+  <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body class="app-body">
+  <nav class="navbar navbar-expand-lg sticky-top app-navbar">
+    <div class="container">
+      <a class="navbar-brand fw-semibold d-inline-flex align-items-center gap-2" href="index.html" aria-label="Privacy Configuration Assistant, parte di TivuStream Privacy First">
+        <span class="brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 24 24" width="26" height="26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12 2 4 5v6c0 4.5 3.2 7.7 8 9 4.8-1.3 8-4.5 8-9V5l-8-3z" fill="currentColor" opacity="0.16"/>
+            <path d="M12 2 4 5v6c0 4.5 3.2 7.7 8 9 4.8-1.3 8-4.5 8-9V5l-8-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="m8.5 11.9 2.3 2.4 4.7-5.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <span>Privacy Configuration Assistant</span>
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav" aria-controls="mainNav" aria-expanded="false" aria-label="Apri navigazione">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="mainNav">
+        <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2">
+          <li class="nav-item">
+            <a class="nav-link" data-nav-link href="index.html">Homepage</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-nav-link href="dashboard.html">Dashboard</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-nav-link href="analysis.html">Analisi</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-nav-link href="optimization.html">Ottimizza</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-nav-link href="guide.html">Guida</a>
+          </li>
+          <li class="nav-item ms-lg-2">
+            <button class="btn btn-outline-primary btn-sm theme-toggle" type="button" data-theme-toggle aria-label="Cambia tema">
+              <span data-theme-label>Dark mode</span>
+            </button>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="journey-stepper" aria-label="Percorso di analisi privacy">
+    <div class="container">
+      <ol class="journey-stepper-track">
+        <li class="journey-step is-active" aria-current="step">
+          <a href="dashboard.html"><span class="journey-step-index">1</span><span class="journey-step-label">Capisci</span></a>
+        </li>
+        <li class="journey-step">
+          <a href="analysis.html"><span class="journey-step-index">2</span><span class="journey-step-label">Approfondisci</span></a>
+        </li>
+        <li class="journey-step">
+          <a href="optimization.html"><span class="journey-step-index">3</span><span class="journey-step-label">Agisci</span></a>
+        </li>
+      </ol>
+    </div>
+  </nav>
+
+  <main class="py-5">
+    <div class="container">
+      <div class="page-intro mb-4">
+        <div>
+          <span class="eyebrow" id="dashboardIntroEyebrow">Home dashboard</span>
+          <h1 class="mt-2 mb-2" id="dashboardIntroTitle">Sintesi compatta della configurazione privacy</h1>
+          <p class="text-secondary mb-0" id="dashboardIntroDescription">
+            Questa home raccoglie lo stato generale della configurazione, il riepilogo essenziale dei controlli attivi
+            e le schede per aprire percorso guidato, suggerimenti, guida pratica e flusso di analisi.
+          </p>
+        </div>
+        <a class="btn btn-outline-secondary" href="optimization.html" id="dashboardIntroAction">Apri il percorso guidato</a>
+      </div>
+
+      <div class="row g-4 mt-1" id="privacyIntelligenceSection">
+        <div class="col-12">
+          <div class="content-panel" id="privacyIntelligenceHero"></div>
+        </div>
+      </div>
+
+      <div class="content-panel mt-4">
+        <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap">
+          <div>
+            <span class="eyebrow" id="dashboardQuickSummaryEyebrow">Sintesi rapida</span>
+            <h2 class="h4 mt-2 mb-1" id="dashboardQuickSummaryTitle">Controlli attivi in questa sessione</h2>
+            <p class="text-secondary mb-0" id="dashboardQuickSummaryDescription">
+              Qui vedi solo i dati essenziali per capire subito browser, piattaforma, DNS e stato WebRTC.
+            </p>
+          </div>
+        </div>
+        <div class="row g-4 mt-1" id="summaryCards"></div>
+      </div>
+
+      <div class="content-panel mt-4">
+        <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap">
+          <div>
+            <span class="eyebrow" id="dashboardHubEyebrow">Schede di lavoro</span>
+            <h2 class="h4 mt-2 mb-1" id="dashboardHubTitle">Scegli come approfondire</h2>
+            <p class="text-secondary mb-0" id="dashboardHubDescription">
+              La home resta sintetica: i dettagli vengono distribuiti nelle pagine dedicate.
+            </p>
+          </div>
+        </div>
+        <div class="action-panel action-panel--primary mt-4" id="dashboardActionPanel">
+          <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap">
+            <div>
+              <span class="eyebrow" id="dashboardActionEyebrow">Cosa fare ora</span>
+              <h3 class="h5 mt-2 mb-1" id="dashboardActionTitle">Intervento consigliato e verifica</h3>
+              <p class="text-secondary mb-0" id="dashboardActionDescription">
+                Segui le istruzioni passo-passo e poi rifai il check per verificare il risultato.
+              </p>
+            </div>
+            <span class="status-pill status-info" data-dashboard-action-badge>Consigliato</span>
+          </div>
+          <div class="row g-3 mt-1">
+            <div class="col-lg-7">
+              <div class="soft-box h-100">
+                <span class="summary-label" id="dashboardActionIssueLabel">Problema dominante</span>
+                <strong class="d-block mt-1" data-dashboard-action-issue>In preparazione...</strong>
+                <span class="summary-label mt-3 d-block" id="dashboardActionDoLabel">Cosa fare</span>
+                <strong class="d-block mt-1" data-dashboard-action-do>Sto preparando l'azione prioritaria.</strong>
+              </div>
+            </div>
+            <div class="col-lg-5">
+              <div class="soft-box h-100">
+                <span class="summary-label" id="dashboardActionNextLabel">Prossimo passo</span>
+                <strong class="d-block mt-1" id="dashboardActionNextValue">Apri istruzioni e rifai il check</strong>
+                <div class="d-flex flex-wrap gap-2 mt-3">
+                  <a class="btn btn-primary" href="optimization.html" id="dashboardActionGoOptimization">Vai alle istruzioni</a>
+                  <a class="btn btn-outline-secondary" href="index.html?start=1" id="dashboardActionRecheck">Rifai check</a>
+                </div>
+                <p class="text-secondary small mt-3 mb-0" id="dashboardActionHint">
+                  Dopo la modifica, torna qui per verificare se il problema principale e rientrato.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row g-4 mt-1">
+          <div class="col-md-6 col-xl-3">
+            <article class="hub-card hub-card--proceed h-100">
+              <span class="eyebrow" id="dashboardCardJourneyEyebrow">Procedi</span>
+              <h3 class="h5 mt-2 mb-2" id="dashboardCardJourneyTitle">Percorso guidato</h3>
+              <p class="text-secondary mb-3" id="dashboardCardJourneyDescription">
+                Apri il Journey per capire da dove partire e quali step conviene affrontare prima.
+              </p>
+              <div class="hub-card-meta">
+                <div class="soft-box">
+                  <span class="summary-label" id="dashboardCardJourneyStateLabel">Stato percorso</span>
+                  <strong class="d-block mt-1" data-dashboard-journey-state>In preparazione...</strong>
+                </div>
+                <div class="soft-box">
+                  <span class="summary-label" id="dashboardCardJourneyProgressLabel">Avanzamento osservato</span>
+                  <strong class="d-block mt-1" data-dashboard-journey-progress>0%</strong>
+                </div>
+              </div>
+              <p class="text-secondary small mt-3 mb-0" data-dashboard-journey-focus>
+                Sto preparando il punto di ingresso del percorso.
+              </p>
+              <a class="btn btn-primary mt-4" href="optimization.html" id="dashboardCardJourneyAction">Apri il percorso</a>
+            </article>
+          </div>
+
+          <div class="col-md-6 col-xl-3">
+            <article class="hub-card hub-card--optimize h-100">
+              <span class="eyebrow" id="dashboardCardRecommendationsEyebrow">Ottimizza</span>
+              <h3 class="h5 mt-2 mb-2" id="dashboardCardRecommendationsTitle">Suggerimenti prioritari</h3>
+              <p class="text-secondary mb-3" id="dashboardCardRecommendationsDescription">
+                Apri l'area ottimizzazione per vedere le raccomandazioni collegate al percorso e ai controlli attivi.
+              </p>
+              <div class="hub-card-meta">
+                <div class="soft-box">
+                  <span class="summary-label" id="dashboardCardRecommendationCountLabel">Raccomandazioni</span>
+                  <strong class="d-block mt-1" data-dashboard-recommendation-count>0</strong>
+                </div>
+                <div class="soft-box">
+                  <span class="summary-label" id="dashboardCardRecommendationPriorityLabel">Priorita dominante</span>
+                  <strong class="d-block mt-1" data-dashboard-recommendation-priority>In calcolo...</strong>
+                </div>
+              </div>
+              <p class="text-secondary small mt-3 mb-0" data-dashboard-priority-action>
+                Sto preparando l'intervento iniziale consigliato.
+              </p>
+              <a class="btn btn-outline-primary mt-4" href="optimization.html#optimizationRecommendationSection" id="dashboardCardRecommendationsAction">Apri suggerimenti</a>
+            </article>
+          </div>
+
+          <div class="col-md-6 col-xl-3">
+            <article class="hub-card hub-card--understand h-100">
+              <span class="eyebrow" id="dashboardCardGuideEyebrow">Capisci</span>
+              <h3 class="h5 mt-2 mb-2" id="dashboardCardGuideTitle">Guida pratica</h3>
+              <p class="text-secondary mb-3" id="dashboardCardGuideDescription">
+                Usa la guida per leggere i risultati con linguaggio semplice e orientarti senza entrare nei dettagli tecnici.
+              </p>
+              <div class="soft-box">
+                <span class="summary-label" id="dashboardCardGuideMetaLabel">Quando usarla</span>
+                <strong class="d-block mt-1" id="dashboardCardGuideMetaValue">Quando vuoi interpretare il risultato prima di agire</strong>
+              </div>
+              <a class="btn btn-outline-primary mt-4" href="guide.html" id="dashboardCardGuideAction">Apri guida</a>
+            </article>
+          </div>
+
+          <div class="col-md-6 col-xl-3">
+            <article class="hub-card hub-card--deepdive h-100">
+              <span class="eyebrow" id="dashboardCardAnalysisEyebrow">Approfondisci</span>
+              <h3 class="h5 mt-2 mb-2" id="dashboardCardAnalysisTitle">Approfondimento analitico</h3>
+              <p class="text-secondary mb-3" id="dashboardCardAnalysisDescription">
+                Apri la pagina analysis se vuoi capire meglio il quadro Root Cause Driven, le motivazioni del motore e il contesto tecnico.
+              </p>
+              <div class="soft-box">
+                <span class="summary-label" id="dashboardCardAnalysisMetaLabel">Contenuto</span>
+                <strong class="d-block mt-1" id="dashboardCardAnalysisMetaValue">Quadro esteso, reasoning e Root Causes osservate</strong>
+              </div>
+              <a class="btn btn-outline-primary mt-4" href="analysis.html" id="dashboardCardAnalysisAction">Apri analisi</a>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <div class="row g-4 mt-1">
+        <div class="col-lg-5">
+          <div class="content-panel h-100">
+            <span class="eyebrow" id="scoreSectionEyebrow">Snapshot tecnico</span>
+            <h2 class="h4 mt-2 mb-3" id="scoreSectionTitle">Privacy Score attuale</h2>
+            <div class="privacy-score-panel">
+              <div class="d-flex justify-content-between align-items-end gap-3 flex-wrap">
+                <div>
+                  <span class="summary-label" id="scoreNumericLabel">Punteggio numerico</span>
+                  <strong class="privacy-score-value" id="privacyScoreValue">--</strong>
+                </div>
+                <div class="text-end">
+                  <span class="summary-label" id="scoreAssignedLabel">Livello assegnato</span>
+                  <strong class="privacy-score-level" id="privacyScoreLevel">In calcolo...</strong>
+                </div>
+              </div>
+              <div class="progress soft-progress mt-4" role="progressbar" aria-label="Privacy score" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                <div class="progress-bar" id="privacyScoreBar" style="width: 0%">0%</div>
+              </div>
+              <p class="text-secondary mt-3 mb-0" id="privacyScoreDescription">Sto calcolando il punteggio sulla base dei dati attualmente disponibili.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="content-panel h-100">
+            <div class="d-flex justify-content-between align-items-center flex-wrap gap-3">
+              <div>
+                <span class="eyebrow" id="findingsSectionEyebrow">Situazione attuale</span>
+                <h2 class="h4 mt-2 mb-1" id="findingsSectionTitle">Tre segnali da tenere d'occhio</h2>
+              </div>
+              <a class="btn btn-outline-secondary btn-sm" href="guide.html" id="findingsSectionGuideLink">Apri guida pratica</a>
+            </div>
+            <div class="row g-3 mt-1" id="findingCards"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <div class="container">
+      <div class="footer-top d-flex flex-column flex-md-row justify-content-between align-items-start gap-3">
+        <div class="footer-about">
+          <strong>Privacy Configuration Assistant</strong>
+          <p class="mb-2 text-secondary">Analizza la tua privacy e ti guida, passo passo, a migliorarla &mdash; anche se non sei tecnico.</p>
+          <p class="footer-brand mb-0">Parte del progetto <a href="https://tivustream.com" target="_blank" rel="noopener"><strong>TivuStream &middot; Privacy First</strong></a></p>
+        </div>
+        <nav class="footer-links" aria-label="Link del footer">
+          <a href="index.html">Homepage</a>
+          <a href="dashboard.html">Dashboard</a>
+          <a href="analysis.html">Analisi</a>
+          <a href="optimization.html">Ottimizza</a>
+          <a href="guide.html">Guida</a>
+        </nav>
+      </div>
+      <div class="footer-bottom text-secondary">Versione 0.9 &middot; TivuStream Privacy First</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/js/browser-detection.js"></script>
+  <script src="assets/js/network-detection.js"></script>
+  <script src="assets/js/dns-provider-catalog.js"></script>
+  <script src="assets/js/dns-probe.js"></script>
+  <script src="assets/js/dns-confidence-engine.js"></script>
+  <script src="assets/js/dns-detection.js"></script>
+  <script src="assets/js/dns-leak-detection.js"></script>
+  <script src="assets/js/dns-security-detection.js"></script>
+  <script src="assets/js/vpn-detection.js"></script>
+  <script src="assets/js/webrtc-detection.js"></script>
+  <script src="assets/js/privacy-score.js"></script>
+  <script src="assets/js/recommendation-engine.js"></script>
+  <script src="assets/js/privacy-intelligence-engine.js"></script>
+  <script src="assets/js/i18n.js"></script>
+  <script src="assets/js/app.js"></script>
+</body>
+</html>
