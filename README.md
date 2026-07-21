@@ -1,64 +1,84 @@
 # Privacy Configuration Assistant
 
-Assistente che analizza la configurazione privacy dell'utente e, invece di limitarsi a mostrare numeri, lo **guida passo passo** verso la correzione e ne verifica la risoluzione. Pensato per utenti non tecnici.
+**🌐 English** · [🇮🇹 Italiano](README.it.md)
 
-## Principio
+> An assistant that analyzes a user's privacy configuration and — instead of just showing numbers — **guides them step by step** toward fixing issues and verifies the resolution. Built for non-technical users.
 
-Progressione a quattro livelli: raccogliere il dato tecnico, interpretarlo, spiegarlo in linguaggio semplice, guidare verso una soluzione utile con istruzioni precise per il browser in uso.
+**🔗 Live site: [privacyassistant.tivustream.com](https://privacyassistant.tivustream.com)**
 
-## Stato attuale — v0.9
+Part of the [TivuStream · Privacy First](https://tivustream.com) project.
 
-Moduli attivi:
+## Screenshots
+
+![Homepage — guided privacy analysis](assets/screenshots/hero.png)
+
+![Dashboard — Root Cause Driven overview](assets/screenshots/dashboard.png)
+
+## Principle
+
+A four-level progression: collect the technical signal, interpret it, explain it in plain language, and guide the user toward a useful fix with precise instructions for the browser in use.
+
+## Current status — v0.9
+
+Active modules:
 
 - Browser Detection
-- Network Detection (IPv4/IPv6, lingua, timezone, risoluzione, Do Not Track)
-- DNS Provider Detection (catalogo, probe, verifica anche per resolver DoH come NextDNS)
+- Network Detection (IPv4/IPv6, language, timezone, resolution, Do Not Track)
+- DNS Provider Detection (catalog, probe, including DoH resolvers such as NextDNS)
 - DNS Leak Detection
 - DNSSEC / DNS Security Detection
 - WebRTC Analysis
-- VPN Protection Analysis (osservazione neutra, senza giudizio)
+- VPN Protection Analysis (neutral observation, no judgment)
 - Privacy Score
-- Recommendation Engine con istruzioni passo passo per browser (IT/EN)
-- Privacy Intelligence Engine con Root Cause Layer
-- Privacy Journey Engine — percorso guidato
+- Recommendation Engine with step-by-step, per-browser instructions (IT/EN)
+- Privacy Intelligence Engine with Root Cause Layer
+- Privacy Journey Engine — guided path
 
-Prossime aggiunte: ri-verifica automatica dopo la correzione, supporto Safari, report finale esportabile, DoH detection completo.
+Coming next: automatic re-verification after a fix, Safari support, exportable final report, complete DoH detection.
 
-## Struttura
-
-```
-index.html            Homepage e avvio analisi
-dashboard.html        Sintesi Root Cause Driven
-analysis.html         Approfondimento analitico
-optimization.html     Percorso guidato Journey e raccomandazioni
-guide.html            Guida per utenti non tecnici
-assets/css/styles.css Tema (light/dark) e componenti UI
-assets/js/            Motori di detection, intelligence, journey, score, i18n
-```
-
-## Architettura dei motori
-
-Flusso: **detection → adapter → segnali normalizzati → Root Cause → analysis core → Journey / UI**.
-
-Ogni nuova verifica si aggiunge ai margini (nuovo modulo di detection + adapter + registrazione nel mapping delle Root Cause) **senza modificare il core di analisi**. L'elenco delle estensioni previste vive in `FUTURE_SIGNAL_ADAPTERS` dentro `privacy-intelligence-engine.js`. La UI legge il risultato, non lo ricalcola.
-
-## Esecuzione in locale
-
-Il progetto e statico (HTML/CSS/JS, nessuna build). Alcune rilevazioni usano `fetch`/WebRTC e richiedono un server HTTP locale (aprire il file con `file://` puo bloccarle).
-
-Con Python:
+## Structure
 
 ```
-cd PrivacyConfiguratioAssistant
+index.html            Homepage and analysis launcher
+dashboard.html        Root Cause Driven summary
+analysis.html         Analytical deep dive
+optimization.html     Guided Journey and recommendations
+guide.html            Guide for non-technical users
+assets/css/styles.css Theme (light/dark) and UI components
+assets/js/            Detection, intelligence, journey, score, i18n engines
+```
+
+## Engine architecture
+
+Flow: **detection → adapter → normalized signals → Root Cause → analysis core → Journey / UI**.
+
+Each new check is added at the edges (a new detection module + adapter + registration in the Root Cause mapping) **without touching the analysis core**. The list of planned extensions lives in `FUTURE_SIGNAL_ADAPTERS` inside `privacy-intelligence-engine.js`. The UI reads the result; it does not recompute it.
+
+## Deployment
+
+The site is static (HTML/CSS/JS, no build step) and is published on **Cloudflare** with automatic deploys on every push to `main`. Production URL: [privacyassistant.tivustream.com](https://privacyassistant.tivustream.com).
+
+## Running locally
+
+The project is static, but some checks use `fetch`/WebRTC and need a local HTTP server (opening files via `file://` can block them).
+
+With Python:
+
+```
+cd privacyassistant
 python3 -m http.server 8000
 ```
 
-Poi apri `http://localhost:8000/index.html`.
+Then open `http://localhost:8000/index.html`.
 
-In alternativa, con Node: `npx serve` oppure l'estensione Live Server di VS Code.
+Alternatively, with Node: `npx serve`, or the Live Server extension for VS Code.
 
-## Documentazione
+## Documentation
 
-- `CHANGELOG.md` — storico delle release
+- `CHANGELOG.md` — release history
 
-Le note tecniche e le specifiche di progettazione sono mantenute separatamente per uso interno.
+Technical notes and design specifications are kept separately for internal use.
+
+## License
+
+Released under the [MIT License](LICENSE).
