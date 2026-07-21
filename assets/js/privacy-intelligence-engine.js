@@ -1464,16 +1464,19 @@
     ];
   }
 
-  function getWebRtcStateProfile(stateKey) {
+  function getWebRtcStateProfile(stateKey, vpnActive) {
     if (stateKey === "public_ip_exposed") {
+      // Senza VPN, l'IP pubblico esposto via WebRTC coincide con quello che il sito
+      // gia vede dalla connessione: non e una vera fuga. Diventa ad alta gravita solo
+      // dietro VPN/proxy, dove WebRTC puo rivelare l'IP reale bypassando la protezione.
       return createSignalProfile({
         normalizedValue: "public_ip_exposed",
         polarity: "negative",
-        intrinsicSeverity: "high",
-        suggestedPriority: "Alta",
+        intrinsicSeverity: vpnActive ? "high" : "medium",
+        suggestedPriority: vpnActive ? "Alta" : "Media",
         remediation: { status: "direct", userControl: "medium" },
-        benefitEstimate: { status: "estimated", level: "high", basis: "plausible" },
-        scoreImpactEstimate: { status: "estimated", likelyGain: 10 },
+        benefitEstimate: { status: "estimated", level: vpnActive ? "high" : "medium", basis: "plausible" },
+        scoreImpactEstimate: { status: "estimated", likelyGain: vpnActive ? 10 : 6 },
         decisionSupport: {
           reasonCodes: ["webrtc_public_ip_exposed"]
         }
@@ -1555,10 +1558,11 @@
     });
   }
 
-  function adaptWebRtcSignals(webrtcEnvironment) {
+  function adaptWebRtcSignals(webrtcEnvironment, vpnEnvironment) {
     const resolvedEnvironment = webrtcEnvironment || {};
     const technicalFindings = resolvedEnvironment.technicalFindings || {};
-    const stateProfile = getWebRtcStateProfile(resolvedEnvironment.stateKey || resolvedEnvironment.functionalStateKey);
+    const vpnActive = !!(vpnEnvironment && vpnEnvironment.vpnState === "signals_present");
+    const stateProfile = getWebRtcStateProfile(resolvedEnvironment.stateKey || resolvedEnvironment.functionalStateKey, vpnActive);
     const publicAddresses = uniqueStrings(technicalFindings.publicAddresses || []);
     const mdnsHostnames = uniqueStrings(technicalFindings.mdnsHostnames || []);
 
@@ -3370,7 +3374,7 @@
       .concat(adaptDnsLeakSignals(context.dnsLeakEnvironment))
       .concat(adaptDnsSecuritySignals(context.dnsSecurityEnvironment))
       .concat(adaptVpnSignals(context.vpnEnvironment))
-      .concat(adaptWebRtcSignals(context.webrtcEnvironment))
+      .concat(adaptWebRtcSignals(context.webrtcEnvironment, context.vpnEnvironment))
       .concat(adaptPrivacyScoreSignals(context.privacyScore));
     const dataset = {
       contractName: CONTRACT_NAME,

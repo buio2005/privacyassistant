@@ -297,13 +297,13 @@
       return buildFunctionalResult(fallback, technicalFindings, {
         state: "IP pubblico esposto",
         stateKey: "public_ip_exposed",
-        riskLevel: "Alto",
-        priority: "Alta",
+        riskLevel: "Medio",
+        priority: "Media",
         reliability: "Alta",
         confidence: 0.9,
         simpleExplanation: "Il browser ha mostrato almeno un candidato WebRTC con indirizzo pubblico o reflexive leggibile da una pagina web.",
-        privacyImpact: "Questo e il caso piu rilevante per la privacy, perche un sito puo correlare meglio sessione, rete e dispositivo anche quando ti aspetti protezioni aggiuntive.",
-        suggestedAction: "Controlla le impostazioni WebRTC del browser e, quando disponibile, confronta questo risultato con VPN Protection Analysis e DNS Leak Detection."
+        privacyImpact: "Se non usi una VPN, questo e lo stesso IP pubblico che ogni sito vede gia dalla tua connessione: l'impatto aggiuntivo e limitato. Diventa un problema serio se usi una VPN o un proxy, perche WebRTC puo rivelare il tuo IP reale bypassando la protezione.",
+        suggestedAction: "Se usi una VPN, valuta di limitare o disattivare WebRTC seguendo la guida per il tuo browser. Senza VPN, di norma non e un rischio aggiuntivo."
       });
     }
 
