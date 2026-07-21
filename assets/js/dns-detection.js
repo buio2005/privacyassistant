@@ -35,7 +35,7 @@
       provider: NOT_DETERMINABLE_PROVIDER,
       providerId: "unknown",
       privacyLevel: "Non disponibile",
-      description: "Il browser non espone direttamente quale resolver DNS stia usando e in questa sessione non e stato possibile identificarlo con sufficiente affidabilita.",
+      description: "Il browser non espone direttamente quale resolver DNS stai usando. Con i DNS orientati alla privacy usati via DoH (come AdGuard DNS o NextDNS) e normale non riuscire a identificarli dall'IP di uscita: non e un errore ne un problema di sicurezza. Se hai configurato un DNS privacy, con ogni probabilita sta funzionando correttamente.",
       reliability: "Bassa",
       confidence: 0.24,
       determination: "not_determinable",

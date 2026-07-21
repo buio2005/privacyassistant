@@ -116,6 +116,18 @@
           it: ["Clicca il menu ☰ in alto a destra e scegli Impostazioni.", "A sinistra clicca Privacy e sicurezza.", "Scorri fino a 'Raccolta e utilizzo dati di Firefox'.", "Togli la spunta dalle opzioni di invio dati che trovi elencate."],
           en: ["Click the ☰ menu in the top right and choose Settings.", "On the left click Privacy & Security.", "Scroll down to 'Firefox Data Collection and Use'.", "Uncheck the data-sending options listed there."]
         }
+      },
+      {
+        id: "firefox-webrtc",
+        priority: "low",
+        audience: "Firefox",
+        title: { it: "WebRTC: intervieni solo se usi una VPN", en: "WebRTC: only act if you use a VPN" },
+        description: { it: "I browser moderni nascondono gia il tuo IP locale, quindi di solito non devi fare nulla. Il rischio che resta riguarda l'IP pubblico reale, che WebRTC puo rivelare anche dietro una VPN. Se usi una VPN e vuoi la massima protezione, puoi disattivare del tutto WebRTC.", en: "Modern browsers already hide your local IP, so usually you don't need to do anything. The remaining risk is your real public IP, which WebRTC can reveal even behind a VPN. If you use a VPN and want maximum protection, you can turn WebRTC off entirely." },
+        howTo: { it: "Disattiva WebRTC da about:config (attenzione: blocca chiamate e videochiamate nel browser).", en: "Disable WebRTC from about:config (note: it blocks calls and video calls in the browser)." },
+        steps: {
+          it: ["Apri una nuova scheda, scrivi about:config nella barra degli indirizzi e premi Invio.", "Conferma l'avviso 'Accetto il rischio'.", "Nel campo di ricerca in alto incolla: media.peerconnection.enabled", "Fai doppio clic sulla riga per portare il valore su false.", "Ricorda: cosi le chiamate e videochiamate dentro il browser (Meet, Whereby...) smetteranno di funzionare. Rimetti true se ti servono."],
+          en: ["Open a new tab, type about:config in the address bar and press Enter.", "Confirm the 'Accept the Risk' warning.", "In the search box at the top paste: media.peerconnection.enabled", "Double-click the row to set the value to false.", "Remember: in-browser calls and video calls (Meet, Whereby...) will stop working. Set it back to true if you need them."]
+        }
       }
     ],
     chrome: [
@@ -141,6 +153,18 @@
         steps: {
           it: ["Clicca il menu ⋮ in alto a destra e scegli Impostazioni.", "In alto a sinistra clicca 'Tu e Google'.", "Apri 'Sincronizzazione' (o 'Gestisci cio che sincronizzi').", "Disattiva le voci che non ti servono, oppure metti in pausa la sincronizzazione."],
           en: ["Click the ⋮ menu in the top right and choose Settings.", "At the top left click 'You and Google'.", "Open 'Sync' (or 'Manage what you sync').", "Turn off the items you don't need, or pause sync."]
+        }
+      },
+      {
+        id: "chrome-webrtc",
+        priority: "low",
+        audience: "Chrome",
+        title: { it: "WebRTC: cosa puoi fare davvero su Chrome", en: "WebRTC: what you can actually do on Chrome" },
+        description: { it: "Chrome nasconde gia il tuo IP locale di default, quindi la fuga piu comune e coperta. Non ha pero un interruttore per WebRTC e, dopo i cambiamenti alle estensioni, non c'e piu un blocco affidabile via add-on. Il rischio residuo e l'IP pubblico dietro una VPN.", en: "Chrome already hides your local IP by default, so the most common leak is covered. It has no WebRTC switch, however, and after the changes to extensions there's no longer a reliable add-on block. The remaining risk is your public IP behind a VPN." },
+        howTo: { it: "Tieni il browser aggiornato; se usi una VPN, scegline una con protezione WebRTC, o passa a Brave/Firefox per le attivita sensibili.", en: "Keep the browser updated; if you use a VPN, pick one with WebRTC protection, or switch to Brave/Firefox for sensitive activity." },
+        steps: {
+          it: ["Verifica che Chrome sia aggiornato: l'IP locale e gia nascosto di default.", "Sappi che Chrome non ha un interruttore nativo per WebRTC e le estensioni non lo bloccano piu in modo affidabile.", "Se usi una VPN, scegline una che dichiari esplicitamente la protezione dai leak WebRTC.", "Per le attivita piu sensibili valuta Brave (controllo nativo) o Firefox (disattivazione da about:config)."],
+          en: ["Make sure Chrome is up to date: the local IP is already hidden by default.", "Be aware that Chrome has no native WebRTC switch and extensions no longer block it reliably.", "If you use a VPN, choose one that explicitly advertises WebRTC leak protection.", "For more sensitive activity, consider Brave (native control) or Firefox (about:config toggle)."]
         }
       }
     ],
@@ -168,6 +192,18 @@
           it: ["Clicca il menu ⋯ in alto a destra e scegli Impostazioni.", "A sinistra clicca 'Privacy, ricerca e servizi'.", "Scorri fino alla sezione 'Servizi', in fondo.", "Disattiva i suggerimenti e le funzioni che non usi."],
           en: ["Click the ⋯ menu in the top right and choose Settings.", "On the left click 'Privacy, search, and services'.", "Scroll to the 'Services' section at the bottom.", "Turn off the suggestions and features you don't use."]
         }
+      },
+      {
+        id: "edge-webrtc",
+        priority: "low",
+        audience: "Microsoft Edge",
+        title: { it: "WebRTC: cosa puoi fare davvero su Edge", en: "WebRTC: what you can actually do on Edge" },
+        description: { it: "Edge nasconde gia il tuo IP locale di default, quindi la fuga piu comune e coperta. Come Chrome non ha un interruttore per WebRTC e le estensioni non offrono piu un blocco affidabile. Il rischio residuo e l'IP pubblico dietro una VPN.", en: "Edge already hides your local IP by default, so the most common leak is covered. Like Chrome it has no WebRTC switch and extensions no longer offer a reliable block. The remaining risk is your public IP behind a VPN." },
+        howTo: { it: "Tieni il browser aggiornato; se usi una VPN, scegline una con protezione WebRTC, o passa a Brave/Firefox per le attivita sensibili.", en: "Keep the browser updated; if you use a VPN, pick one with WebRTC protection, or switch to Brave/Firefox for sensitive activity." },
+        steps: {
+          it: ["Verifica che Edge sia aggiornato: l'IP locale e gia nascosto di default.", "Sappi che Edge non ha un interruttore nativo per WebRTC e le estensioni non lo bloccano piu in modo affidabile.", "Se usi una VPN, scegline una che dichiari esplicitamente la protezione dai leak WebRTC.", "Per le attivita piu sensibili valuta Brave (controllo nativo) o Firefox (disattivazione da about:config)."],
+          en: ["Make sure Edge is up to date: the local IP is already hidden by default.", "Be aware that Edge has no native WebRTC switch and extensions no longer block it reliably.", "If you use a VPN, choose one that explicitly advertises WebRTC leak protection.", "For more sensitive activity, consider Brave (native control) or Firefox (about:config toggle)."]
+        }
       }
     ],
     brave: [
@@ -194,6 +230,18 @@
           it: ["Clicca il menu ☰ in alto a destra e scegli Impostazioni.", "Scorri le sezioni come Rewards, Wallet, Leo AI e VPN.", "Disattiva quelle che non usi per alleggerire il browser."],
           en: ["Click the ☰ menu in the top right and choose Settings.", "Scroll through sections like Rewards, Wallet, Leo AI and VPN.", "Turn off the ones you don't use to keep the browser lean."]
         }
+      },
+      {
+        id: "brave-webrtc",
+        priority: "low",
+        audience: "Brave",
+        title: { it: "WebRTC: usa il controllo nativo di Brave", en: "WebRTC: use Brave's native control" },
+        description: { it: "Il tuo IP locale e gia nascosto di default. Per l'IP pubblico (importante soprattutto se usi una VPN) Brave ha un'impostazione nativa dedicata, senza bisogno di estensioni.", en: "Your local IP is already hidden by default. For the public IP (important especially with a VPN) Brave has a dedicated native setting, no extensions needed." },
+        howTo: { it: "Imposta la 'WebRTC IP handling policy' su un'opzione piu restrittiva.", en: "Set the 'WebRTC IP handling policy' to a stricter option." },
+        steps: {
+          it: ["Apri una nuova scheda, scrivi brave://settings/privacy e premi Invio.", "Cerca la voce 'WebRTC IP handling policy' (Gestione IP WebRTC).", "Scegli 'Disable non-proxied UDP' per la protezione piu forte, specie con una VPN.", "Nota: le opzioni piu restrittive possono disturbare alcune chiamate; se serve, torna a un livello meno rigido."],
+          en: ["Open a new tab, type brave://settings/privacy and press Enter.", "Find the 'WebRTC IP handling policy' entry.", "Choose 'Disable non-proxied UDP' for the strongest protection, especially with a VPN.", "Note: stricter options can disrupt some calls; if needed, go back to a less strict level."]
+        }
       }
     ],
     librewolf: [
@@ -219,6 +267,18 @@
         steps: {
           it: ["Se un sito non funziona, clicca l'icona dello scudo nella barra degli indirizzi, su quel sito.", "Disattiva la protezione solo per quel sito.", "Non abbassare le protezioni globali dalle impostazioni.", "Ogni tanto rivedi le eccezioni che hai creato."],
           en: ["If a site breaks, click the shield icon in the address bar, on that site.", "Turn protection off for that site only.", "Don't lower the global protections in settings.", "Every so often review the exceptions you've created."]
+        }
+      },
+      {
+        id: "librewolf-webrtc",
+        priority: "low",
+        audience: "LibreWolf",
+        title: { it: "WebRTC: intervieni solo se usi una VPN", en: "WebRTC: only act if you use a VPN" },
+        description: { it: "LibreWolf nasconde gia il tuo IP locale. Il rischio che resta riguarda l'IP pubblico reale, che WebRTC puo rivelare anche dietro una VPN. Se usi una VPN e vuoi la massima protezione, puoi disattivare del tutto WebRTC.", en: "LibreWolf already hides your local IP. The remaining risk is your real public IP, which WebRTC can reveal even behind a VPN. If you use a VPN and want maximum protection, you can turn WebRTC off entirely." },
+        howTo: { it: "Disattiva WebRTC da about:config (attenzione: blocca chiamate e videochiamate nel browser).", en: "Disable WebRTC from about:config (note: it blocks calls and video calls in the browser)." },
+        steps: {
+          it: ["Apri una nuova scheda, scrivi about:config nella barra degli indirizzi e premi Invio.", "Conferma l'avviso 'Accetto il rischio'.", "Nel campo di ricerca in alto incolla: media.peerconnection.enabled", "Fai doppio clic sulla riga per portare il valore su false.", "Ricorda: cosi le chiamate e videochiamate dentro il browser smetteranno di funzionare. Rimetti true se ti servono."],
+          en: ["Open a new tab, type about:config in the address bar and press Enter.", "Confirm the 'Accept the Risk' warning.", "In the search box at the top paste: media.peerconnection.enabled", "Double-click the row to set the value to false.", "Remember: in-browser calls and video calls will stop working. Set it back to true if you need them."]
         }
       }
     ],
@@ -272,6 +332,18 @@
           it: ["Apri il menu e vai su Estensioni (o Componenti aggiuntivi).", "Guarda l'elenco delle estensioni installate.", "Disattiva o rimuovi quelle che non usi davvero."],
           en: ["Open the menu and go to Extensions (or Add-ons).", "Look at the list of installed extensions.", "Disable or remove the ones you don't really use."]
         }
+      },
+      {
+        id: "zen-webrtc",
+        priority: "low",
+        audience: "Zen Browser",
+        title: { it: "WebRTC: intervieni solo se usi una VPN", en: "WebRTC: only act if you use a VPN" },
+        description: { it: "Zen e basato su Firefox e nasconde gia il tuo IP locale. Il rischio che resta riguarda l'IP pubblico reale, che WebRTC puo rivelare anche dietro una VPN. Se usi una VPN e vuoi la massima protezione, puoi disattivare del tutto WebRTC.", en: "Zen is based on Firefox and already hides your local IP. The remaining risk is your real public IP, which WebRTC can reveal even behind a VPN. If you use a VPN and want maximum protection, you can turn WebRTC off entirely." },
+        howTo: { it: "Disattiva WebRTC da about:config (attenzione: blocca chiamate e videochiamate nel browser).", en: "Disable WebRTC from about:config (note: it blocks calls and video calls in the browser)." },
+        steps: {
+          it: ["Apri una nuova scheda, scrivi about:config nella barra degli indirizzi e premi Invio.", "Conferma l'avviso 'Accetto il rischio'.", "Nel campo di ricerca in alto incolla: media.peerconnection.enabled", "Fai doppio clic sulla riga per portare il valore su false.", "Ricorda: cosi le chiamate e videochiamate dentro il browser smetteranno di funzionare. Rimetti true se ti servono."],
+          en: ["Open a new tab, type about:config in the address bar and press Enter.", "Confirm the 'Accept the Risk' warning.", "In the search box at the top paste: media.peerconnection.enabled", "Double-click the row to set the value to false.", "Remember: in-browser calls and video calls will stop working. Set it back to true if you need them."]
+        }
       }
     ],
     vivaldi: [
@@ -298,6 +370,18 @@
           it: ["Apri le Impostazioni di Vivaldi.", "Scorri le sezioni delle funzioni integrate.", "Disattiva quelle che non usi per mantenere tutto piu semplice."],
           en: ["Open Vivaldi's Settings.", "Scroll through the built-in feature sections.", "Turn off the ones you don't use to keep everything simpler."]
         }
+      },
+      {
+        id: "vivaldi-webrtc",
+        priority: "low",
+        audience: "Vivaldi",
+        title: { it: "WebRTC: cosa puoi fare davvero su Vivaldi", en: "WebRTC: what you can actually do on Vivaldi" },
+        description: { it: "Vivaldi e basato su Chromium e nasconde gia il tuo IP locale di default. Non offre un blocco WebRTC affidabile via estensione. Il rischio residuo e l'IP pubblico dietro una VPN.", en: "Vivaldi is Chromium-based and already hides your local IP by default. It doesn't offer a reliable WebRTC block via extension. The remaining risk is your public IP behind a VPN." },
+        howTo: { it: "Tieni il browser aggiornato; se usi una VPN, scegline una con protezione WebRTC, o usa Brave/Firefox per le attivita sensibili.", en: "Keep the browser updated; if you use a VPN, pick one with WebRTC protection, or use Brave/Firefox for sensitive activity." },
+        steps: {
+          it: ["Verifica che Vivaldi sia aggiornato: l'IP locale e gia nascosto di default.", "Controlla in Impostazioni > Privacy se e presente un'opzione relativa a WebRTC e, se c'e, impostala sul livello piu restrittivo.", "Se usi una VPN, scegline una che dichiari la protezione dai leak WebRTC.", "Per le attivita piu sensibili valuta Brave (controllo nativo) o Firefox (disattivazione da about:config)."],
+          en: ["Make sure Vivaldi is up to date: the local IP is already hidden by default.", "In Settings > Privacy check whether a WebRTC-related option exists and, if so, set it to the strictest level.", "If you use a VPN, choose one that advertises WebRTC leak protection.", "For more sensitive activity, consider Brave (native control) or Firefox (about:config toggle)."]
+        }
       }
     ],
     floorp: [
@@ -323,6 +407,18 @@
         steps: {
           it: ["Apri il menu e vai su Estensioni (o Componenti aggiuntivi).", "Guarda l'elenco delle estensioni.", "Disattiva o rimuovi quelle che non usi davvero."],
           en: ["Open the menu and go to Extensions (or Add-ons).", "Look at the list of extensions.", "Disable or remove the ones you don't really use."]
+        }
+      },
+      {
+        id: "floorp-webrtc",
+        priority: "low",
+        audience: "Floorp",
+        title: { it: "WebRTC: intervieni solo se usi una VPN", en: "WebRTC: only act if you use a VPN" },
+        description: { it: "Floorp e basato su Firefox e nasconde gia il tuo IP locale. Il rischio che resta riguarda l'IP pubblico reale, che WebRTC puo rivelare anche dietro una VPN. Se usi una VPN e vuoi la massima protezione, puoi disattivare del tutto WebRTC.", en: "Floorp is based on Firefox and already hides your local IP. The remaining risk is your real public IP, which WebRTC can reveal even behind a VPN. If you use a VPN and want maximum protection, you can turn WebRTC off entirely." },
+        howTo: { it: "Disattiva WebRTC da about:config (attenzione: blocca chiamate e videochiamate nel browser).", en: "Disable WebRTC from about:config (note: it blocks calls and video calls in the browser)." },
+        steps: {
+          it: ["Apri una nuova scheda, scrivi about:config nella barra degli indirizzi e premi Invio.", "Conferma l'avviso 'Accetto il rischio'.", "Nel campo di ricerca in alto incolla: media.peerconnection.enabled", "Fai doppio clic sulla riga per portare il valore su false.", "Ricorda: cosi le chiamate e videochiamate dentro il browser smetteranno di funzionare. Rimetti true se ti servono."],
+          en: ["Open a new tab, type about:config in the address bar and press Enter.", "Confirm the 'Accept the Risk' warning.", "In the search box at the top paste: media.peerconnection.enabled", "Double-click the row to set the value to false.", "Remember: in-browser calls and video calls will stop working. Set it back to true if you need them."]
         }
       }
     ],
@@ -363,6 +459,18 @@
         steps: {
           it: ["Apri il menu principale del browser (di solito ☰ o tre puntini in alto a destra).", "Cerca Impostazioni, poi una sezione chiamata Privacy o Sicurezza.", "Attiva il blocco dei tracker e dei cookie di terze parti, se disponibile.", "Controlla i permessi dei siti: fotocamera, microfono, posizione e notifiche."],
           en: ["Open the browser's main menu (usually ☰ or three dots in the top right).", "Look for Settings, then a section called Privacy or Security.", "Turn on blocking of trackers and third-party cookies, if available.", "Check site permissions: camera, microphone, location and notifications."]
+        }
+      },
+      {
+        id: "generic-webrtc",
+        priority: "low",
+        audience: { it: "Browser non riconosciuto", en: "Unrecognized browser" },
+        title: { it: "WebRTC: cosa sapere", en: "WebRTC: what to know" },
+        description: { it: "Quasi tutti i browser moderni nascondono gia il tuo IP locale. Il rischio che resta e l'IP pubblico reale, che WebRTC puo esporre soprattutto se usi una VPN.", en: "Almost all modern browsers already hide your local IP. The remaining risk is your real public IP, which WebRTC can expose especially if you use a VPN." },
+        howTo: { it: "Tieni il browser aggiornato e, se usi una VPN, scegline una con protezione WebRTC.", en: "Keep the browser updated and, if you use a VPN, choose one with WebRTC protection." },
+        steps: {
+          it: ["Tieni il browser aggiornato: l'offuscamento dell'IP locale e ormai attivo di default quasi ovunque.", "Se il tuo browser ha impostazioni Privacy, cerca una voce relativa a WebRTC o alla gestione dell'IP.", "Se usi una VPN, scegline una che dichiari protezione dai leak WebRTC.", "Per le attivita sensibili, browser come Brave (controllo nativo) o Firefox (about:config) offrono opzioni dirette."],
+          en: ["Keep the browser updated: local-IP obfuscation is now on by default almost everywhere.", "If your browser has Privacy settings, look for a WebRTC or IP-handling option.", "If you use a VPN, choose one that advertises WebRTC leak protection.", "For sensitive activity, browsers like Brave (native control) or Firefox (about:config) offer direct options."]
         }
       }
     ]
